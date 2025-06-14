@@ -1,0 +1,306 @@
+/* === Umum === */
+body {
+  background: linear-gradient(135deg, #1e1e3f 0%, #121245 50%, #2d1b69 100%);
+  min-height: 100vh;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === Enhanced Hero Section === */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3")
+      center/cover;
+  border-radius: 20px;
+  padding: 4rem 2rem;
+  margin-bottom: 3rem;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* === Section Title === */
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+/* === Enhanced Game Cards di Home === */
+.games-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-logo-wrapper {
+  width: 100%;
+  height: 120px; /* tinggi seragam untuk semua logo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.game-card-home {
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 63, 0.8),
+    rgba(18, 18, 69, 0.9)
+  );
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.game-card-home:hover {
+  transform: translateY(-8px);
+  border-color: rgba(74, 144, 226, 0.5);
+  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.2);
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 63, 0.9),
+    rgba(74, 144, 226, 0.1)
+  );
+}
+
+/* === Logo Game di Home (kartu-kartu kecil) === */
+.game-logo {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.game-card-home:hover .game-logo {
+  transform: scale(1.1);
+}
+
+/* === Card di Home === */
+.card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  margin-top: 10px;
+}
+
+/* === Banner Game di Halaman Detail === */
+.game-banner {
+  display: block;
+  margin: 0 auto 30px auto;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-banner:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* === Tabs Styling === */
+.nav-tabs {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.nav-tabs .nav-link {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px 10px 0 0;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-tabs .nav-link.active {
+  background: linear-gradient(45deg, #4a90e2, #357abd);
+  color: white;
+  border-color: #4a90e2;
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* === Tournament Cards === */
+.tournament-card {
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 63, 0.8),
+    rgba(18, 18, 69, 0.9)
+  );
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  border-radius: 20px;
+  padding: 25px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tournament-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(74, 144, 226, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.tournament-card:hover::before {
+  left: 100%;
+}
+
+.tournament-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(74, 144, 226, 0.3);
+  border-color: rgba(74, 144, 226, 0.5);
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 63, 0.9),
+    rgba(74, 144, 226, 0.2)
+  );
+}
+
+.tournament-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.tournament-card .card-text {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+
+.tournament-card .badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 15px;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #28a745, #20c997);
+  border: none;
+  box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+}
+
+.tournament-card .btn-outline-primary {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  border: none;
+  border-radius: 30px;
+  padding: 10px 30px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tournament-card .btn-outline-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6);
+  background: linear-gradient(45deg, #0056b3, #004085);
+}
+
+/* === Alert Styling === */
+.alert-info {
+  background: linear-gradient(
+    45deg,
+    rgba(23, 162, 184, 0.2),
+    rgba(23, 162, 184, 0.1)
+  );
+  border: 1px solid rgba(23, 162, 184, 0.3);
+  border-radius: 15px;
+  color: #b8daff;
+  backdrop-filter: blur(10px);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .games-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .game-logo {
+    height: 100px;
+  }
+
+  .game-banner {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .tournament-card {
+    padding: 20px;
+  }
+}
