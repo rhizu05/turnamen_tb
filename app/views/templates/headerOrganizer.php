@@ -36,7 +36,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="<?= BASEURL; ?>/home">🎮 Tournament</a>
+    <a class="navbar-brand fw-bold" href="<?= BASEURL ?>/home">🎮 Tournament</a>
     <div class="ms-auto">
       <a href="<?= BASEURL; ?>/organizer/logout" class="btn btn-outline-light">Logout</a>
     </div>

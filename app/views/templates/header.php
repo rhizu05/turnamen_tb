@@ -46,7 +46,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">🎮 Tournament</a>
+        <a class="navbar-brand fw-bold" href="<?= BASEURL ?>/home">🎮 Tournament</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -58,7 +58,6 @@
                     <a href="<?= BASEURL ?>/player/login" class="btn btn-outline-light me-2">Login</a>
                 <?php endif; ?>
 
-                <a href="#" class="btn btn-outline-light me-2">Play</a>
                 <a href="<?= BASEURL ?>/organizer/login" class="btn btn-light">Organize</a>
             </div>
         </div>

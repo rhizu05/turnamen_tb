@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?= $data['judul']; ?> | Tournament</title>
+    <title><?= isset($data['judul']) ? $data['judul'] . ' | Tournament' : 'Tournament' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -30,9 +30,20 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">🎮 Tournament</a>
-        <div class="d-flex ms-auto">
-            <a href="#" class="btn btn-outline-light me-2">Login</a>
+        <a class="navbar-brand fw-bold" href="<?= BASEURL ?>/home">🎮 Tournament</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="d-flex">
+                <?php if (isset($_SESSION['player'])) : ?>
+                    <a href="<?= BASEURL ?>/player/logout" class="btn btn-outline-light me-2">Logout</a>
+                <?php else : ?>
+                    <a href="<?= BASEURL ?>/player/login" class="btn btn-outline-light me-2">Login</a>
+                <?php endif; ?>
+
+                <a href="<?= BASEURL ?>/organizer/login" class="btn btn-light">Organize</a>
+            </div>
         </div>
     </div>
 </nav>

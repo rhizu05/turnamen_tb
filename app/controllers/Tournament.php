@@ -152,6 +152,7 @@ class Tournament extends Controller
         $registration_open = $tournament['status'] === 'upcoming' && $now <= $tournament['registration_deadline'];
 
         $this->view('tournament/detail', [
+            'judul' => 'Detail - ' . $tournament['name'],
             'tournament' => $tournament,
             'game' => $game,
             'teamCount' => $teamCount,
