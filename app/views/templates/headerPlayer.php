@@ -36,3 +36,116 @@
         </div>
     </div>
 </nav>
+
+<style>
+.tournament-bracket {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+    overflow-x: auto;
+    background: #1a202c;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.round-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #a0aec0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.bracket-matches {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+}
+
+.bracket-match {
+    background: #2d3748;
+    border-radius: 8px;
+    border: 1px solid #4a5568;
+    overflow: hidden;
+    min-height: 80px;
+}
+
+.match-team {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid #4a5568;
+    color: #e2e8f0;
+}
+
+.match-team:last-child {
+    border-bottom: none;
+}
+
+.match-team.winner {
+    background: #2d5a27;
+    color: #68d391;
+    font-weight: bold;
+}
+
+.team-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.team-score {
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.tbd-match {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    color: #a0aec0;
+    font-style: italic;
+}
+
+/* Hapus connector lama dan ganti dengan ini */
+.bracket-round {
+    position: relative;
+}
+
+/* Garis penghubung setelah bracket-round (kecuali yang terakhir) */
+.bracket-round:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    background: transparent;
+    pointer-events: none;
+}
+
+/* Garis horizontal untuk setiap match */
+.bracket-match {
+    position: relative;
+}
+
+
+
+@media (max-width: 767px) {
+    .tournament-bracket {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .bracket-connector {
+        display: none;
+    }
+}
+</style>

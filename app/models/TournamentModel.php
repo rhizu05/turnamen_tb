@@ -112,22 +112,21 @@ class TournamentModel {
     }
 
     // 1. Jumlah tim yang terdaftar
-    public function getRegisteredTeamCount($tournamentId) {
-        $this->db->query("SELECT COUNT(*) as total FROM tournament_registrations WHERE tournament_id = :id");
-        $this->db->bind(':id', $tournamentId);
-        $result = $this->db->single();
-        return $result['total'];
+    public function getRegisteredTeamCount($tournamentId){
+        $query = "SELECT COUNT(*) as count FROM teams WHERE tournament_id = :tournament_id";
+        $this->db->query($query);
+        $this->db->bind(':tournament_id', $tournamentId);
+        return $this->db->single()['count'];
     }
-
 
     // 2. Daftar tim yang sudah daftar
-    public function getRegisteredTeams($tournamentId) {
-        $this->db->query("SELECT teams.name FROM tournament_registrations 
-            JOIN teams ON tournament_registrations.team_id = teams.id 
-            WHERE tournament_registrations.tournament_id = :id");
-        $this->db->bind(':id', $tournamentId);
+    public function getRegisteredTeams($tournamentId)
+    {
+        $this->db->query("SELECT * FROM teams WHERE tournament_id = :tournament_id");
+        $this->db->bind(':tournament_id', $tournamentId);
         return $this->db->resultSet();
     }
+
 
     public function getMatchesByTournament($tournamentId) {
         $this->db->query("
