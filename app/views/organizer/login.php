@@ -32,9 +32,6 @@
       <div class="mb-3">
         <input type="password" class="form-control" name="password" placeholder="Masukkan Password" required>
       </div>
-      <div class="mb-3 text-end">
-        <a href="#" class="text-decoration-none small">Lupa password?</a>
-      </div>
       <button type="submit" class="btn btn-primary w-100">Login</button>
       <div class="mt-3 text-center">
         <small>Belum punya akun? <a href="<?= BASEURL; ?>/organizer/register">Daftar</a></small>

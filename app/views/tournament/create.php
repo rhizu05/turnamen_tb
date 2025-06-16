@@ -62,12 +62,6 @@
     <!-- Allow Solo & Status -->
     <div class="row mb-3">
       <div class="col">
-        <div class="form-check mt-4">
-          <input class="form-check-input" type="checkbox" name="allow_solo" id="allow_solo" value="1">
-          <label class="form-check-label" for="allow_solo">Izinkan Solo Player</label>
-        </div>
-      </div>
-      <div class="col">
         <label for="status" class="form-label">Status</label>
         <select class="form-select" name="status" id="status">
           <option value="upcoming" selected>Upcoming</option>

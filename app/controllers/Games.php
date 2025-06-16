@@ -14,26 +14,30 @@ class Games extends Controller {
 
     public function detail($slug)
     {
-        // Kode yang sudah kamu punya
         $gameModel = $this->model('GameModel');
         $tournamentModel = $this->model('TournamentModel');
-
+    
         $game = $gameModel->getGameBySlug($slug);
         if (!$game) {
             header('Location: ' . BASEURL);
             exit;
         }
-        $status = $_GET['status'] ?? 'upcoming';
-
+    
+        // Solusi pasti untuk menangkap ?status=ongoing
+        parse_str($_SERVER['QUERY_STRING'], $query);
+        $status = $query['status'] ?? 'upcoming';
+    
         $tournaments = $tournamentModel->getTournamentsByGameAndStatus($game['id'], $status);
-
+    
         $data['judul'] = $game['name'];
         $data['game'] = $game;
         $data['tournaments'] = $tournaments;
         $data['status'] = $status;
-
+    
         $this->view('templates/header', $data);
         $this->view('games/detail', $data);
         $this->view('templates/footer');
     }
+
+
 }

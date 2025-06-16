@@ -1,5 +1,22 @@
 <?php require_once '../app/views/templates/headerPlayer.php'; ?>
 
+<?php if (isset($_SESSION['success_message'])): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= $_SESSION['success_message']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php unset($_SESSION['success_message']); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error_message'])): ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" >
+        <?= $_SESSION['error_message']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php unset($_SESSION['error_message']); ?>
+<?php endif; ?>
+
+
 <div class="container py-5">
     <div class="card shadow-lg border-0">
         <img src="<?= BASEURL . '/img/' . $game['detail_img_path']; ?>" alt="<?= $game['name']; ?>" class="game-banner">
@@ -37,11 +54,20 @@
                     <div class="row mt-4">
                         <div class="col-md-6 mb-3">
                             📅 <strong>Tanggal:</strong><br>
-                            <?= date('d M Y', strtotime($tournament['start_date'])) ?> – <?= date('d M Y', strtotime($tournament['end_date'])) ?>
+                            <?php if (!empty($tournament['start_date'])): ?>
+                            <?= date('d M Y', strtotime($tournament['start_date'])) ?>
+                            <?php else: ?>
+                                <em>Tanggal belum ditentukan</em>
+                            <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
                             📝 <strong>Registrasi sampai:</strong><br>
-                            <?= date('d M Y', strtotime($tournament['registration_deadline'])) ?>
+                            <?php if (!empty($tournament['egistration_deadline'])): ?>
+                            <?= date('d M Y', strtotime($tournament['egistration_deadline'])) ?>
+                            <?php else: ?>
+                                <em>Tanggal belum ditentukan</em>
+                            <?php endif; ?>
+                           
                         </div>
                         <div class="col-md-6 mb-3">
                             🟢 <strong>Status Turnamen:</strong><br>
@@ -318,7 +344,7 @@
                     <?php if (count($teams) > 0): ?>
                         <ul class="list-group mt-3">
                             <?php foreach ($teams as $team): ?>
-                                <li class="list-group-item">👥 <?= htmlspecialchars($team['name']) ?></li>
+                                <li class="list-group-item">👥   <?= htmlspecialchars($team['name']) ?></li>
                             <?php endforeach; ?>
                         </ul>
                     <?php else: ?>
@@ -336,7 +362,7 @@
             <div class="mt-4">
                 <?php if ($registration_open): ?>
                     <?php if ($is_player_logged_in): ?>
-                        <a href="<?= BASEURL ?>/register/tournament/<?= $tournament['id'] ?>" class="btn btn-primary">
+                        <a href="<?= BASEURL ?>/tournament/register/<?= $tournament['id'] ?>" class="btn btn-primary">
                             🚀 Daftar Sekarang
                         </a>
                     <?php else: ?>

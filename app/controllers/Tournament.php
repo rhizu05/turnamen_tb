@@ -104,8 +104,14 @@ class Tournament extends Controller
 
         $data = $_POST;
 
+        // Normalisasi tanggal
+        if (isset($data['registration_deadline']) && $data['registration_deadline'] === '') {
+            $data['registration_deadline'] = null;
+        }
+
+
         // Tangani upload gambar jika ada
-        if ($_FILES['image']['error'] == 0) {
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $imageName = uniqid() . '_' . $_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $imageName);
             $data['image_path'] = 'uploads/' . $imageName;
@@ -161,8 +167,58 @@ class Tournament extends Controller
             'registration_open' => $registration_open,
             'is_player_logged_in' => isset($_SESSION['player']),
         ]);
+
     }
 
+    public function register($id)
+{
+    $tournamentModel = $this->model('TournamentModel');
+    $tournament = $tournamentModel->getById($id); // Ambil data turnamen
 
+    $this->view('tournament/register', [
+        'judul' => 'Daftar Turnamen - ' . $tournament['name'],
+        'tournament' => $tournament
+    ]);
+}
+
+public function registerSave()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $teamName = $_POST['team_name'];
+        $playerIds = $_POST['player_ids']; // array
+        $tournamentId = $_POST['tournament_id'];
+        $createdBy = 1; // Ubah ke $_SESSION['user']['id'] jika login
+
+        $teamModel = $this->model('TeamModel');
+        $teamMemberModel = $this->model('TeamMemberModel');
+
+        // ✅ Validasi: Pastikan tidak ada player yang sudah terdaftar di turnamen ini
+        foreach ($playerIds as $playerId) {
+            if ($teamMemberModel->isPlayerRegistered($playerId, $tournamentId)) {
+                $_SESSION['error_message'] = "Player dengan ID $playerId sudah terdaftar di turnamen ini.";
+                header('Location: ' . BASEURL . '/tournament/detail/' . $tournamentId);
+                exit;
+            }
+        }
+
+        // Jika semua player valid, lanjutkan membuat tim
+        $teamId = $teamModel->createTeam($teamName, $tournamentId, $createdBy);
+
+        foreach ($playerIds as $playerId) {
+            $teamModel->addTeamMember($teamId, $playerId);
+        }
+
+        $teamModel->registerTournament($tournamentId, $teamId, $createdBy);
+
+        $_SESSION['success_message'] = "Tim berhasil didaftarkan ke turnamen!";
+        header('Location: ' . BASEURL . '/tournament/detail/' . $tournamentId);
+        exit;
+    }
+}
 
 }
+
+
+
+
+

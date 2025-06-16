@@ -33,14 +33,6 @@
     </div>
 
     <div class="mb-3">
-    <label for="allow_solo" class="form-label">Boleh Solo?</label>
-    <select name="allow_solo" class="form-select">
-        <option value="1" <?= $data['tournament']['allow_solo'] ? 'selected' : ''; ?>>Ya</option>
-        <option value="0" <?= !$data['tournament']['allow_solo'] ? 'selected' : ''; ?>>Tidak</option>
-    </select>
-    </div>
-
-    <div class="mb-3">
     <label for="start_date" class="form-label">Tanggal Mulai</label>
     <input type="date" name="start_date" class="form-control" value="<?= $data['tournament']['start_date']; ?>">
     </div>

@@ -4,7 +4,7 @@ class Database {
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $db_name = 'turnamen'; // Ganti dengan nama database kamu
+    private $db_name = 'turnamen_db'; // Ganti dengan nama database kamu
 
     private $dbh;
     private $stmt;
@@ -50,4 +50,8 @@ class Database {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function lastInsertId() {
+        return $this->dbh->lastInsertId();
+    }
+    
 }

@@ -80,10 +80,10 @@ class TournamentModel {
         $this->db->bind(':prize_pool', $data['prize_pool']);
         $this->db->bind(':max_teams', $data['max_teams']);
         $this->db->bind(':registration_fee', $data['registration_fee']);
-        $this->db->bind(':registration_deadline', $data['registration_deadline']);
         $this->db->bind(':allow_solo', $data['allow_solo']);
-        $this->db->bind(':start_date', $data['start_date']);
-        $this->db->bind(':end_date', $data['end_date']);
+        $this->db->bind(':registration_deadline', $data['registration_deadline'] ?: null);
+        $this->db->bind(':start_date', $data['start_date'] ?: null);
+        $this->db->bind(':end_date', $data['end_date'] ?: null);
         $this->db->bind(':status', $data['status']);
         $this->db->bind(':image_path', $data['image_path']);
         $this->db->bind(':id', $data['id']);
@@ -112,21 +112,22 @@ class TournamentModel {
     }
 
     // 1. Jumlah tim yang terdaftar
-    public function getRegisteredTeamCount($tournamentId){
-        $query = "SELECT COUNT(*) as count FROM teams WHERE tournament_id = :tournament_id";
-        $this->db->query($query);
-        $this->db->bind(':tournament_id', $tournamentId);
-        return $this->db->single()['count'];
+    public function getRegisteredTeamCount($tournamentId) {
+        $this->db->query("SELECT COUNT(*) as total FROM tournament_registrations WHERE tournament_id = :id");
+        $this->db->bind(':id', $tournamentId);
+        $result = $this->db->single();
+        return $result['total'];
     }
+
 
     // 2. Daftar tim yang sudah daftar
-    public function getRegisteredTeams($tournamentId)
-    {
-        $this->db->query("SELECT * FROM teams WHERE tournament_id = :tournament_id");
-        $this->db->bind(':tournament_id', $tournamentId);
+    public function getRegisteredTeams($tournamentId) {
+        $this->db->query("SELECT teams.name FROM tournament_registrations 
+            JOIN teams ON tournament_registrations.team_id = teams.id 
+            WHERE tournament_registrations.tournament_id = :id");
+        $this->db->bind(':id', $tournamentId);
         return $this->db->resultSet();
     }
-
 
     public function getMatchesByTournament($tournamentId) {
         $this->db->query("
@@ -141,5 +142,14 @@ class TournamentModel {
         $this->db->bind(':id', $tournamentId);
         return $this->db->resultSet();
     }
+
+    public function getById($id)
+    {
+        $this->db->query("SELECT * FROM tournaments WHERE id = :id");
+        $this->db->bind(':id', $id);
+        return $this->db->single(); // Mengembalikan 1 data turnamen
+    }
+
+
 
 }
